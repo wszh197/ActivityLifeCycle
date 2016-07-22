@@ -13,5 +13,6 @@
         android:id="@+id/activity_mainActivity_button"
         android:text="启动第二个Activity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"/>
 </RelativeLayout>

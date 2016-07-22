@@ -55,4 +55,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onDestroy: 执行了");
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart: 执行了");
+    }
+
 }
