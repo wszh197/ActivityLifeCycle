@@ -12,17 +12,19 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final String INFO_NAME="infoName";
-    private Button button;
+    private Button mButton;
+    private Button mButtonThird;
+    private EditText mEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity","onCreate执行了");
-        button = (Button) findViewById(R.id.activity_main_button);
-        final EditText editext = (EditText) findViewById(R.id.activity_main_textview);
+        mButton = (Button) findViewById(R.id.activity_main_button);
+        final EditText mEditText = (EditText) findViewById(R.id.activity_main_textview);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*
@@ -35,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putExtra("name", "MainActivity传过来的消息。");
 
                 //intent.putExtra("name", editext.getText().toString());
-                intent.putExtra(INFO_NAME, editext.getText().toString());
+                intent.putExtra(INFO_NAME, mEditText.getText().toString());
                 //startActivity(intent);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent,0);
             }
         });
 
-        button = (Button) findViewById(R.id.activity_third_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        mButtonThird = (Button) findViewById(R.id.activity_third_button);
+        mButtonThird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,ThirdActivity.class);
@@ -50,8 +52,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String name = data.getStringExtra("thirdback");
+        Toast.makeText(MainActivity.this,name,Toast.LENGTH_SHORT).show();
+
+    }
+
+    /*
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            String uName = data.getStringExtra("back");
+            Toast.makeText(MainActivity.this, uName, Toast.LENGTH_SHORT).show();
+        }
+    */
     @Override
     protected void onStart() {
         super.onStart();
