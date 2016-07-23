@@ -12,13 +12,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final String INFO_NAME="infoName";
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity","onCreate执行了");
-        Button button = (Button) findViewById(R.id.activity_main_button);
+        button = (Button) findViewById(R.id.activity_main_button);
         final EditText editext = (EditText) findViewById(R.id.activity_main_textview);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +36,18 @@ public class MainActivity extends AppCompatActivity {
 
                 //intent.putExtra("name", editext.getText().toString());
                 intent.putExtra(INFO_NAME, editext.getText().toString());
+                //startActivity(intent);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        button = (Button) findViewById(R.id.activity_third_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ThirdActivity.class);
                 startActivity(intent);
+
             }
         });
     }
