@@ -6,19 +6,35 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    public static final String INFO_NAME="infoName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity","onCreate执行了");
-        Button button = (Button) findViewById(R.id.activity_mainActivity_button);
+        Button button = (Button) findViewById(R.id.activity_main_button);
+        final EditText editext = (EditText) findViewById(R.id.activity_main_textview);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 Intent intent = new Intent(MainActivity.this, ActivitySecond.class);
+                startActivity(intent);
+                */
+                //Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this,ActivitySecond.class);
+                //intent.putExtra("name", "MainActivity传过来的消息。");
+
+                //intent.putExtra("name", editext.getText().toString());
+                intent.putExtra(INFO_NAME, editext.getText().toString());
                 startActivity(intent);
             }
         });
